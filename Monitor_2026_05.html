@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor Sector Eléctrico - Mayo 2026 | CIER</title>
+
+    <!-- Open Graph (LinkedIn, Facebook, WhatsApp, Slack, etc.) -->
+    <meta property="og:type"         content="website">
+    <meta property="og:url"          content="https://jcbelza.github.io/Monitor-Mayo-2026/">
+    <meta property="og:title"        content="Monitor Sector Eléctrico — Mayo 2026 | CIER">
+    <meta property="og:description"  content="Informe basado en medios de prensa especializados de 14 países del sector eléctrico latinoamericano.">
+    <meta property="og:image"        content="https://raw.githubusercontent.com/jcbelza/Monitor-Mayo-2026/main/miniatura1.png">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt"    content="Monitor Sector Eléctrico Mayo 2026 - CIER">
+    <meta property="og:locale"       content="es_LA">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; }
+        .chart-container { position: relative; width: 100%; height: 350px; max-height: 400px; }
+        @media (max-width: 768px) { .chart-container { height: 300px; } }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .active-tab { border-bottom: 2px solid #1d4ed8; color: #1d4ed8; font-weight: 600; }
+        /* Ocultar scrollbar en la tira de solapas móvil sin deshabilitar el scroll */
+        .overflow-x-auto::-webkit-scrollbar { display: none; }
+        .overflow-x-auto { -ms-overflow-style: none; scrollbar-width: none; }
+        .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .alerta-roja { border-left: 4px solid #dc2626; background: #fef2f2; }
+        .oportunidad-verde { border-left: 4px solid #16a34a; background: #f0fdf4; }
+        .alerta-naranja { border-left: 4px solid #d97706; background: #fffbeb; }
+        .badge-sa { display:inline-block; background:#1d4ed8; color:white; font-size:10px; font-weight:700; padding:1px 7px; border-radius:3px; margin-right:4px; }
+        .badge-cac { display:inline-block; background:#ea580c; color:white; font-size:10px; font-weight:700; padding:1px 7px; border-radius:3px; margin-right:4px; }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- Navegación -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm backdrop-blur-md bg-opacity-90">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- En móvil: columna (logo arriba, solapas abajo). En desktop: fila con h-16. -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between sm:h-16 pt-3 pb-0 sm:pt-0">
+                <!-- Logo -->
+                <div class="flex items-center gap-3 pb-1 sm:pb-0">
+                    <div class="w-8 h-8 bg-blue-700 rounded-lg flex items-center justify-center text-white font-bold text-sm">C</div>
+                    <span class="font-bold text-slate-800 text-base sm:text-lg tracking-tight">CIER <span class="text-slate-500 font-normal text-sm sm:text-base">| Monitor Mayo 2026</span></span>
+                </div>
+                <!-- Solapas: una sola instancia. Móvil = tira horizontal desplazable; desktop = inline. -->
+                <div class="flex overflow-x-auto sm:overflow-visible -mx-4 sm:mx-0 px-2 sm:px-0 sm:space-x-8 border-t sm:border-t-0 border-slate-100">
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="active-tab flex-none sm:flex-auto whitespace-nowrap sm:whitespace-normal inline-flex items-center px-4 sm:px-1 py-2 sm:py-0 sm:pt-1 text-sm font-medium border-b-2 border-transparent">Tablero Ejecutivo</button>
+                    <button onclick="switchTab('regional')" id="nav-regional" class="flex-none sm:flex-auto whitespace-nowrap sm:whitespace-normal inline-flex items-center px-4 sm:px-1 py-2 sm:py-0 sm:pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-blue-300">Pulso Regional</button>
+                    <button onclick="switchTab('strategy')" id="nav-strategy" class="flex-none sm:flex-auto whitespace-nowrap sm:whitespace-normal inline-flex items-center px-4 sm:px-1 py-2 sm:py-0 sm:pt-1 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:border-blue-300">Estrategia y Riesgos</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Header -->
+        <div class="mb-8">
+    <p class="text-sm font-semibold text-blue-700 uppercase tracking-wider">Uso Reservado — CIER Internacional</p>
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mt-1">Monitor sobre la Situación Actual del Sector Eléctrico</h1>
+    
+    <p class="mt-2 text-lg text-slate-600">
+        Reporte estratégico basado en <strong>200 noticias</strong> de <strong>14 países</strong>. El panorama eléctrico regional de mayo de 2026 está marcado por el almacenamiento en baterías como eje del sistema —con el récord de ofertas de AlmaSADI en Argentina—, la transmisión convertida en el principal cuello de botella de la transición, una demanda que sorprende al alza por la irrupción de centros de datos, la antesala de un nuevo ciclo de El Niño que reordena las prioridades de los sistemas hidrodependientes y un intenso ciclo de reformas regulatorias y de apertura de mercados, encabezado por Paraguay.
+    </p>
+    
+    <div class="mt-3 flex flex-wrap gap-3 text-xs text-slate-500">
+        <span class="bg-slate-100 rounded px-3 py-1">📅 Período: Mayo 2026</span>
+        <span class="bg-slate-100 rounded px-3 py-1">📰 200 noticias analizadas</span>
+        <span class="bg-slate-100 rounded px-3 py-1">🌎 14 países cubiertos</span>
+        <span class="bg-slate-100 rounded px-3 py-1">📡 Fuente: Flash CIER</span>
+    </div>
+</div>
+        <!-- ===== SECCIÓN 1: TABLERO EJECUTIVO ===== -->
+        <div id="view-dashboard" class="space-y-8 animate-fade-in block">
+
+            <!-- Tarjetas de Métricas Clave -->
+            <section>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <!-- Sentimiento -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 card-hover transition-all duration-300 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-red-100 rounded-bl-full -mr-8 -mt-8"></div>
+                        <h3 class="text-sm font-medium text-slate-500 mb-2">Sentimiento Sectorial</h3>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-bold text-orange-700">Reconfiguración</span>
+                            <span class="text-sm text-orange-500 font-medium">Estructural</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-3">Antesala de un nuevo ciclo de El Niño reordena las prioridades andinas. Brasil cierra el período húmedo con reservorios holgados. Ecuador recupera Mazar y Coca Codo Sinclair. Colombia activa un plan de 50 acciones de contingencia.</p>
+                    </div>
+                    <!-- Tecnologías -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 card-hover transition-all duration-300">
+                        <h3 class="text-sm font-medium text-slate-500 mb-2">Convergencia Técnica</h3>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-2xl font-bold text-blue-700">Solar+BESS</span>
+                            <span class="text-sm text-blue-500 font-medium">Convergencia</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-3">La solar fotovoltaica vuelve a liderar la matriz. La licitación AlmaSADI de Argentina recibe ofertas por más de 12 veces el objetivo; Chile inaugura BESS de larga duración; Guatemala consolida solar+BESS en su PEG-5.</p>
+                    </div>
+                    <!-- Driver principal -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 card-hover transition-all duration-300">
+                        <h3 class="text-sm font-medium text-slate-500 mb-2">Driver Principal</h3>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-2xl font-bold text-orange-700">Inversión</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-3">66 menciones de inversión y financiamiento. Privatización Transener; AXIA R$ 2.500M en subestaciones; Perú USD 675M en transmisión; megaproyecto solar USD 75M en Uruguay.</p>
+                    </div>
+                    <!-- Modelo de negocio -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 card-hover transition-all duration-300">
+                        <h3 class="text-sm font-medium text-slate-500 mb-2">Modelo de Negocio</h3>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-2xl font-bold text-slate-800">Utility Estatal</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-3">92 menciones (48,7% de la agenda). ENGIE Brasil con 12,4 GW; ANDE digitaliza red; ETESAL inaugura subestaciones; ENDE plan al 2035; CNEL-CENACE en reestructuración.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gráficos -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-1">Ranking de Tecnologías — Menciones</h3>
+                    <p class="text-xs text-slate-500 mb-4">Menciones genuinas identificadas en corpus de 200 noticias</p>
+                    <div class="chart-container">
+                        <canvas id="techChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-1">Modelos de Negocio — Menciones</h3>
+                    <p class="text-xs text-slate-500 mb-4">Distribución por tipo de actor/modelo identificado</p>
+                    <div class="chart-container">
+                        <canvas id="businessChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-1">Share of Voice por País</h3>
+                    <p class="text-xs text-slate-500 mb-4">Frecuencia en noticias — Top 10 países (189 noticias totales)</p>
+                    <div class="chart-container">
+                        <canvas id="countryChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-1">Inductores de Expansión</h3>
+                    <p class="text-xs text-slate-500 mb-4">Índice normalizado 0–10 (Max = Inversión y Financiamiento, 66 menciones)</p>
+                    <div class="chart-container">
+                        <canvas id="driversChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-3 text-center">Inversión y Financiamiento (10,0) lidera; Transición Energética y Seguridad Energética empatan en 5,8 y concentran el corredor central de la agenda.</p>
+                </div>
+            </div>
+
+            <!-- Cuadro Estadístico de Tecnologías con menciones principales -->
+            <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                <h3 class="text-lg font-bold text-slate-800 mb-1">Cuadro Estadístico — Tecnologías Identificadas</h3>
+                <p class="text-xs text-slate-500 mb-4">Índice 0–10 normalizado respecto al máximo (Solar Fotovoltaica = 21 menciones = 10,0). Una noticia puede clasificar en más de una tecnología.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-blue-700 text-white">
+                                <th class="px-4 py-2 text-left text-xs font-semibold">#</th>
+                                <th class="px-4 py-2 text-left text-xs font-semibold">Tecnología</th>
+                                <th class="px-4 py-2 text-center text-xs font-semibold">Menciones</th>
+                                <th class="px-4 py-2 text-center text-xs font-semibold">Freq. %</th>
+                                <th class="px-4 py-2 text-center text-xs font-semibold">Índice 0–10</th>
+                                <th class="px-4 py-2 text-left text-xs font-semibold">Tendencia</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tech-table-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Cuadro países -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Ranking de Países — Sudamérica</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm" id="country-sa-table"></table>
+                    </div>
+                </section>
+                <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Ranking de Países — CAC y México</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm" id="country-cac-table"></table>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-3">*Las menciones se distribuyen en 14 países; no se registraron noticias clasificables de México, Panamá, Honduras ni Nicaragua en el corpus de mayo.</p>
+                </section>
+            </div>
+
+        </div><!-- end dashboard -->
+
+        <!-- ===== SECCIÓN 2: PULSO REGIONAL ===== -->
+        <div id="view-regional" class="hidden space-y-8 animate-fade-in">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Pulso Regional de Noticias</h2>
+                    <p class="text-slate-600 mt-1 text-sm">Hitos y noticias clave por país — Mayo 2026 · 14 países cubiertos</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex bg-slate-200 p-1 rounded-lg gap-1">
+                    <button onclick="filterRegion('all')" class="region-filter px-4 py-2 text-sm font-medium rounded-md text-slate-700 bg-white shadow-sm transition-all">Todos</button>
+                    <button onclick="filterRegion('south')" class="region-filter px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 transition-all">Sudamérica</button>
+                    <button onclick="filterRegion('north')" class="region-filter px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 transition-all">Centro/Caribe/Mx</button>
+                </div>
+            </div>
+            <div id="country-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+
+        <!-- ===== SECCIÓN 3: ESTRATEGIA Y RIESGOS ===== -->
+        <div id="view-strategy" class="hidden space-y-12 animate-fade-in">
+
+            <!-- Análisis Narrativo -->
+            <section>
+                <div class="bg-slate-800 text-white rounded-xl p-8 shadow-lg">
+                    <h2 class="text-2xl font-bold mb-4 border-b border-slate-600 pb-2 uppercase tracking-tight">Análisis Estratégico de Tendencias — Mayo 2026</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-6">
+                        <div>
+                            <div class="text-blue-400 font-bold mb-2 text-lg">01. Almacenamiento BESS — Activo Sistémico</div>
+                            <p class="text-slate-300 text-sm leading-relaxed">El almacenamiento pasa de complemento a eje del sistema con velocidad inusual. La licitación AlmaSADI de Argentina recibe ofertas por más de doce veces el objetivo convocado, anticipando precios agresivos. Chile inaugura sistemas BESS de larga duración y avanza proyectos renovables con baterías. Brasil confirma un leilão específico de baterías. La hibridación —solar+BESS, eólica+BESS— se perfila como la nueva norma de diseño de proyectos.</p>
+                        </div>
+                        <div>
+                            <div class="text-blue-400 font-bold mb-2 text-lg">02. Privatizaciones y Apertura de Mercados</div>
+                            <p class="text-slate-300 text-sm leading-relaxed">Argentina avanza con la privatización de Transener (cuatro competidores, tres ofertas garantizadas) y de ENARSA. Bolivia abre por primera vez exportación e importación al sector privado y habilita autogeneración industrial. Brasil negocia incorporación del control de UHE Jirau por ENGIE. Paraguay analiza primera apertura histórica al IPP. El centro del debate ya no es si los mercados se abren, sino con qué arquitectura institucional se ordena la coexistencia.</p>
+                        </div>
+                        <div>
+                            <div class="text-blue-400 font-bold mb-2 text-lg">03. Transmisión — La Silenciosa Revolución de la Red</div>
+                            <p class="text-slate-300 text-sm leading-relaxed">La transmisión es la segunda etiqueta tecnológica del mes (29 menciones), casi a la par de la solar fotovoltaica. Perú anuncia licitación de 8 proyectos por más de USD 675M y cartera de 32 proyectos en 20 regiones; AXIA en Brasil ratifica plan de R$ 2.500M en subestaciones del Nordeste; Bolivia avanza línea Yapacaní–La Bélgica; el Coordinador chileno presenta cambios en bases de licitación. La red no es retórica: es la inversión real que viabiliza la integración renovable.</p>
+                        </div>
+                        <div>
+                            <div class="text-blue-400 font-bold mb-2 text-lg">04. El Niño se Anticipa en los Precios</div>
+                            <p class="text-slate-300 text-sm leading-relaxed">Antes de la confirmación oficial, El Niño ya dejó huella: Colombia con embalses bajo umbral y precios spot al alza, ANDEG y Fenalcarbón recordando el rol térmico de respaldo, Air-e bajo gestión especial. Brasil acciona la bandera amarela de mayo y prepara reservorios; ENS Brasil estima reservorios del Sudeste en 68,5% en mayo; Ecuador celebra que las lluvias permiten recuperar Coca Codo Sinclair. La gestión hídrica vuelve al centro de la planificación operativa.</p>
+                        </div>
+                        <div>
+                            <div class="text-blue-400 font-bold mb-2 text-lg">05. Reforma Legislativa Simultánea</div>
+                            <p class="text-slate-300 text-sm leading-relaxed">Bolivia alista cuatro leyes estructurales (Hidrocarburos, Electricidad, Energías Verdes, Litio); El Salvador aprueba reformas para reducir costo de la energía; Costa Rica legisla red nacional de cargadores y proyecto para eliminar fósiles al 2045; Brasil reglamenta Temporadas de Acceso al SIN y debate doble tarifación BESS; Argentina prorroga AlmaSADI con ajustes regulatorios. Volumen y simultaneidad sin precedentes que reordena el contrato del sector eléctrico regional.</p>
+                        </div>
+                        <div>
+                            <div class="text-blue-400 font-bold mb-2 text-lg">06. Integración Regional — Del Relato al Acuerdo</div>
+                            <p class="text-slate-300 text-sm leading-relaxed">Brasil propone mecanismo para vender excedentes a vecinos —"vertimiento turbinable anticipado"— y firma memorando con España sobre minerales críticos; Argentina y Chile reabren complementación con reunión Boric-Milei; República Dominicana y Surinam exploran cooperación; Colombia firma con Venezuela acuerdo por USD 3,48M; Paraguay activa cooperación con OIEA. La integración deja la órbita declarativa y entra en la lógica del acuerdo bilateral concreto.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Integración Energética Regional -->
+            <section>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-1 bg-blue-600"></div>
+                    <h2 class="text-2xl font-bold text-slate-900 uppercase tracking-tight">Integración Energética Regional</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white border border-slate-200 rounded-lg p-5">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></span> SIEPAC — Mercado Eléctrico Regional
+                        </h4>
+                        <p class="text-xs text-slate-600">Guatemala protagoniza el mes con PEG-5: solar+BESS dominando con >700 MW adjudicados. El Salvador completa subestación Surf City (ETESAL) y refuerza la columna costera. Costa Rica avanza electromovilidad con red nacional de cargadores eléctricos.</p>
+                        <div class="mt-3 bg-amber-50 border border-amber-200 rounded p-2 text-xs text-amber-700">⚠ El Salvador y Guatemala consolidan rol en el MER; Costa Rica suma demanda nueva por electromovilidad; flujos transfronterizos sostienen el sistema.</div>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg p-5">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></span> SINEA — Andes y Pacífico
+                        </h4>
+                        <p class="text-xs text-slate-600">Colombia con antesala de El Niño y memorando de transición justa con España; acuerdo con Venezuela por USD 3,48M. Perú con licitaciones de transmisión por más de USD 675M y cartera ampliada de 32 proyectos en 20 regiones. Ecuador opera con embalses normales pero con ruido institucional (allanamientos en CNEL).</p>
+                        <div class="mt-3 bg-amber-50 border border-amber-200 rounded p-2 text-xs text-amber-700">⚠ Colombia bajo presión hidrológica preventiva; Ecuador con riesgos institucionales; Perú expandiendo capacidad de transmisión; Bolivia abre marco a flujos transfronterizos.</div>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg p-5">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 bg-yellow-500 rounded-full flex-shrink-0"></span> Región Sur — Cono Sur
+                        </h4>
+                        <p class="text-xs text-slate-600">Argentina-Chile reabre complementación energética y minera con reunión presidencial Boric-Milei. Brasil avanza en mecanismo de "vertimiento turbinable anticipado" y firma memorando con España sobre minerales críticos. Paraguay disputa el Anexo C de Itaipú y activa cooperación con OIEA. Uruguay confirma 98% renovable en 2025.</p>
+                        <div class="mt-3 bg-amber-50 border border-amber-200 rounded p-2 text-xs text-amber-700">⚠ Argentina-Chile reabre complementación; Brasil consolida rol regional con exportación de excedentes; Paraguay-Brasil siguen en tensión por Itaipú-Anexo C.</div>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-lg p-5">
+                        <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 bg-indigo-500 rounded-full flex-shrink-0"></span> Cooperación Internacional
+                        </h4>
+                        <p class="text-xs text-slate-600">Brasil–España: memorando estratégico sobre minerales críticos. RD–Surinam: cooperación en hidrocarburos. Colombia–España: memorando renovado de transición justa. Paraguay–OIEA: agenda nuclear. Las redes complementarias amplían el perímetro: ya no es sólo eléctrica sino industrial.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Menciones principales por tecnología -->
+            <section>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-1 bg-orange-500"></div>
+                    <h2 class="text-2xl font-bold text-slate-900 uppercase tracking-tight">Menciones Principales por Tecnología</h2>
+                </div>
+                <p class="text-sm text-slate-500 mb-6">Se distinguen menciones <strong>genuinas</strong> (noticia centrada en la tecnología) de <strong>indirectas</strong> (operación del sistema, reservorios, condiciones climáticas).</p>
+                <div class="space-y-6" id="tech-mentions-container"></div>
+            </section>
+
+            <!-- Matriz Riesgos y Oportunidades -->
+            <section class="pb-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-1 bg-amber-600"></div>
+                    <h2 class="text-2xl font-bold text-slate-900 uppercase">Matriz de Riesgos y Oportunidades</h2>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Oportunidades -->
+                    <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6">
+                        <h3 class="text-emerald-800 font-bold text-lg mb-6 flex items-center gap-2"><span>▲</span> Iniciativas de Alto Impacto</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-emerald-500">
+                                <p class="text-sm text-slate-800 font-bold">Brasil: Plano Nacional de Transição Energética</p>
+                                <p class="text-xs text-slate-600 mt-2">MME abre consulta pública del Plano Nacional con horizonte de matriz casi totalmente renovable. ANEEL proyecta expansión equivalente a 9 usinas nucleares en 2026. ENGIE Brasil con 12,4 GW instalados y planes para Jirau. AXIA invierte R$ 2.500M en subestaciones del Nordeste hasta 2030. SMR en GT-19.</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-emerald-500">
+                                <p class="text-sm text-slate-800 font-bold">Argentina: Privatización de Transener + AlmaSADI</p>
+                                <p class="text-xs text-slate-600 mt-2">Cuatro grandes energéticas compiten por la mayor transportista del país; tres ofertas garantizadas. Genneia y Edison Energía ya adjudicatarios provisorios. AlmaSADI prorrogada con nodos adicionales y ajustes para optimizar precios. Trelew se vuelve la primera distribuidora que deja CAMMESA.</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-emerald-500">
+                                <p class="text-sm text-slate-800 font-bold">Paraguay: Modernización ANDE + IPP</p>
+                                <p class="text-xs text-slate-600 mt-2">Modernización masiva con digitalización ANDE al 33%, transformadores GIS en subestaciones nuevas, recuperación de G. 1.600M por deudas y conexiones ilegales, planta solar en el Chaco. Itaipú transfirió USD 107M en 1T y se confirma mayor contracto de potencia para 2024–2026. Cooperación con OIEA en agenda nuclear.</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-emerald-500">
+                                <p class="text-sm text-slate-800 font-bold">Centroamérica: PEG-5 Guatemala + Surf City El Salvador</p>
+                                <p class="text-xs text-slate-600 mt-2">Guatemala adjudica más de 700 MW solar+BESS en PEG-5. El Salvador completa subestación Surf City (ETESAL) y reforma legislativa para reducir costo de la energía. Costa Rica con ley de cargadores eléctricos y primer país centroamericano con fondos del Fondo Verde para el Clima. RD refuerza San Felipe I (470 MW).</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Alertas -->
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6">
+                        <h3 class="text-amber-800 font-bold text-lg mb-6 flex items-center gap-2"><span>⚠️</span> Alertas de Riesgo y Mitigación</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-red-500">
+                                <p class="text-sm text-slate-800 font-bold">Colombia: Antesala de El Niño</p>
+                                <p class="text-xs text-slate-600 mt-2">La mitad de los embalses opera por debajo del 80% de llenado. Precios spot empezaron a subir antes de la confirmación oficial. ANDEG y Fenalcarbón resaltan el papel térmico. Gobierno propone a la CREG ajustar reglas para Air-e y los estratos altos enfrentarán sobretasa.</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-red-500">
+                                <p class="text-sm text-slate-800 font-bold">Ecuador: Riesgo Institucional + Hídrico Latente</p>
+                                <p class="text-xs text-slate-600 mt-2">Recuperación del embalse de Mazar y retorno a la generación de Coca Codo Sinclair tras mejorar las condiciones de sedimentos. Fracaso reiterado de los concursos para alquilar 50 MW de generación de emergencia. Subsidios eléctricos focalizados y recambio en la cartera de Ambiente y Energía.</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-amber-500">
+                                <p class="text-sm text-slate-800 font-bold">Brasil: Bandera Amarela + Consulta Pública 007/2026</p>
+                                <p class="text-xs text-slate-600 mt-2">ANEEL aplica bandera amarela de mayo y aprueba reajustes para Equatorial Alagoas y Neoenergia PE. Consulta Pública 007/2026 abre mecanismo voluntario para rescindir contratos MUST sin viabilidad. Rechazo del relator del LRCAP a recursos de Âmbar. Tensión tarifaria industrial sigue activa.</p>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-amber-500">
+                                <p class="text-sm text-slate-800 font-bold">Uruguay: Resiliencia Climática del Sistema</p>
+                                <p class="text-xs text-slate-600 mt-2">Uruguay redujo sus tarifas eléctricas, aunque sigue entre las más altas de la región. Presentó su Plan Nacional de Eficiencia Energética 2025-2035, profundizando un modelo orientado al uso racional de la energía más que a la expansión de capacidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alertas Regulatorias -->
+            <section>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-1 bg-slate-700"></div>
+                    <h2 class="text-2xl font-bold text-slate-900 uppercase tracking-tight">Alertas Regulatorias del Período</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="bg-white border border-slate-200 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-3"><span class="text-lg">🇧🇷</span><h4 class="font-bold text-slate-800">Brasil — Alta densidad regulatoria</h4></div>
+                        <ul class="space-y-2 text-xs text-slate-600">
+                            <li class="flex gap-2"><span class="text-blue-600 font-bold flex-shrink-0">▸</span>ANEEL reglamenta Temporadas de Acceso al Sistema de Transmisión (CP 007/2026 abre rescisión voluntaria de contratos MUST).</li>
+                            <li class="flex gap-2"><span class="text-blue-600 font-bold flex-shrink-0">▸</span>Bandera amarela de mayo activada y reajustes Equatorial Alagoas + Neoenergia PE aprobados.</li>
+                            <li class="flex gap-2"><span class="text-blue-600 font-bold flex-shrink-0">▸</span>Plano Nacional de Transição Energética en consulta pública con horizonte renovable.</li>
+                            <li class="flex gap-2"><span class="text-blue-600 font-bold flex-shrink-0">▸</span>GT-19 dedicado a Pequeños Reactores Modulares (SMRs) abre nueva agenda nuclear.</li>
+                            <li class="flex gap-2"><span class="text-red-500 font-bold flex-shrink-0">⚠</span>Rechazo del relator del LRCAP a recursos de Âmbar; ENGIE Brasil avanza en control de UHE Jirau.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-3"><span class="text-lg">🇦🇷</span><h4 class="font-bold text-slate-800">Argentina</h4></div>
+                        <p class="text-xs text-slate-600"><strong>Privatización de Transener:</strong> cuatro competidores y tres ofertas garantizadas; Genneia y Edison Energía adjudicatarios provisorios. <strong>AlmaSADI prorrogada</strong> con nuevos nodos y ajustes técnicos. Trelew se convierte en la primera distribuidora que deja CAMMESA.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-3"><span class="text-lg">🇧🇴</span><h4 class="font-bold text-slate-800">Bolivia — Apertura histórica + Reforma integral</h4></div>
+                        <p class="text-xs text-slate-600">Apertura por primera vez al sector privado para exportación e importación de electricidad y autogeneración industrial. Cuatro proyectos de ley en preparación: <strong>Hidrocarburos, Electricidad, Energías Verdes y Litio</strong>. Reforma estructural sin precedentes.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-3"><span class="text-lg">🇪🇨</span><h4 class="font-bold text-slate-800">Ecuador</h4></div>
+                        <p class="text-xs text-slate-600">Recuperación de Mazar y retorno de Coca Codo Sinclair alivian la presión inmediata, pero el fracaso de los concursos de generación de emergencia revela que la fragilidad estructural persiste.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-3"><span class="text-lg">🇨🇴</span><h4 class="font-bold text-slate-800">Colombia</h4></div>
+                        <p class="text-xs text-slate-600"><strong>MinEnergía solicita vigilar cumplimiento de cuotas de energías limpias.</strong> Debate público sobre transición justa. Instrucciones a la CREG para ajustar reglas que aseguren energía a Air-e. Sobretasa a estratos altos en discusión por antesala de El Niño.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-3"><span class="text-lg">🇸🇻🇩🇴🇵🇪</span><h4 class="font-bold text-slate-800">Agenda Nuclear Regional</h4></div>
+                        <p class="text-xs text-slate-600">Perú: 8 proyectos de transmisión por más de USD 675M; cartera de 32 proyectos en 20 regiones; meta de cobertura rural 90,2% para julio 2026. Paraguay: cooperación con OIEA. Costa Rica: red nacional de cargadores y proyecto para eliminar fósiles al 2045. El Salvador: reforma para reducir costo y subestación Surf City.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alertas Ambientales -->
+            <section>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-1 bg-green-600"></div>
+                    <h2 class="text-2xl font-bold text-slate-900 uppercase tracking-tight">Hitos Ambientales y Sostenibilidad</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="oportunidad-verde rounded-xl p-5">
+                        <p class="text-xs font-bold text-green-700 uppercase tracking-widest mb-2">🌿 Hito — Uruguay</p>
+                        <p class="text-sm font-bold text-slate-800 mb-2">98% renovable en 2025</p>
+                        <p class="text-xs text-slate-600">Uruguay confirma matriz casi totalmente renovable en 2025. Megaproyecto solar de USD 75M en Melo. Relocalización del parque solar UTE a Río Negro en discusión política con el presidente Yamandú Orsi.</p>
+                    </div>
+                    <div class="oportunidad-verde rounded-xl p-5">
+                        <p class="text-xs font-bold text-green-700 uppercase tracking-widest mb-2">🌿 Hito — Costa Rica</p>
+                        <p class="text-sm font-bold text-slate-800 mb-2">Electromovilidad y Fondo Verde</p>
+                        <p class="text-xs text-slate-600">Aprobación legislativa que garantiza red nacional de cargadores eléctricos y proyecto de ley para eliminar combustibles fósiles en generación al 2045. Primer país centroamericano en recibir fondos no reembolsables del Fondo Verde para el Clima.</p>
+                    </div>
+                    <div class="oportunidad-verde rounded-xl p-5">
+                        <p class="text-xs font-bold text-green-700 uppercase tracking-widest mb-2">🌿 Hito — Brasil</p>
+                        <p class="text-sm font-bold text-slate-800 mb-2">Plano Nacional + Renovable</p>
+                        <p class="text-xs text-slate-600">MME abre Plano Nacional de Transição Energética con horizonte de matriz casi totalmente renovable. ANEEL proyecta expansión equivalente a 9 usinas nucleares en 2026. ISA Energia Brasil instala video-monitoreo inteligente para mitigar riesgos climáticos en Paraná.</p>
+                    </div>
+                    <div class="alerta-naranja rounded-xl p-5">
+                        <p class="text-xs font-bold text-amber-700 uppercase tracking-widest mb-2">⚠ Alerta Climática</p>
+                        <p class="text-sm font-bold text-slate-800 mb-2">El Niño — Antesala Hídrica</p>
+                        <p class="text-xs text-slate-600">Colombia con la mitad de embalses por debajo del 80% de llenado y precios spot al alza. Brasil activa bandera amarela de mayo y prepara reservorios; Sudeste estimado en 68,5%. Ecuador celebra que las lluvias permiten recuperar Coca Codo Sinclair. Gestión hídrica vuelve al centro de la planificación operativa.</p>
+                    </div>
+                    <div class="alerta-naranja rounded-xl p-5">
+                        <p class="text-xs font-bold text-amber-700 uppercase tracking-widest mb-2">⚠ Alerta Climática</p>
+                        <p class="text-sm font-bold text-slate-800 mb-2">Uruguay — Ciclón Extratropical</p>
+                        <p class="text-xs text-slate-600">Uruguay reduce tarifas y presenta su Plan Nacional de Eficiencia Energética 2025-2035. ISA Energia Brasil obtiene licencia ambiental para nuevas líneas del Proyecto Serra Dourada, capítulo de refuerzo de la red.</p>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-xl p-5">
+                        <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">📋 Licencias Ambientales</p>
+                        <p class="text-sm font-bold text-slate-800 mb-2">Aprobaciones Chile — Mayo 2026</p>
+                        <p class="text-xs text-slate-600">Ruta Energética 2026-2030 con meta de peak 100% renovable. Numerosos parques fotovoltaicos y proyectos de almacenamiento en O'Higgins, Coquimbo y Antofagasta ingresan o avanzan en evaluación ambiental. ContourGlobal inaugura el BESS de mayor duración de Latinoamérica. Engie energiza siete proyectos por US$1.300 millones.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div><!-- end strategy -->
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="font-bold text-slate-200 uppercase tracking-widest">Comisión de Integración Energética Regional (CIER)</p>
+            <p class="text-sm mt-3 font-medium">Monitor Sector Eléctrico LATAM — Mayo 2026 · 200 noticias · 14 países</p>
+            <div class="flex justify-center gap-6 mt-4 opacity-60 text-xs">
+                <span>Secretaría Ejecutiva · Coordinación Internacional del Área Corporativa</span>
+            </div>
+            <div class="flex justify-center gap-6 mt-3 opacity-60 text-xs">
+                <span>Fuentes: Flash CIER | Gobiernos Nacionales | Cenário Energia | Revista Electricidad | La República</span>
+            </div>
+            <p class="text-[10px] mt-6 opacity-40">© 2026 CIER. Uso interno — Confidencial. Elaborado el 1 de mayo de 2026.</p>
+        </div>
+    </footer>
+
+    <script>
+    // ============================================================
+    // DATOS — Mayo 2026
+    // ============================================================
+
+    const techData = {
+        labels: ['Solar Fotovoltaica','Hidroeléctrica','Almacenamiento (BESS)','Eólica','Gas / CCGT','Generación Distribuida','Redes Inteligentes','Biomasa','Nuclear','Hidrógeno Verde'],
+        data:   [21, 16, 13, 11, 11, 8, 6, 5, 3, 1]
+    };
+
+    const techTableData = [
+        ['1','Solar Fotovoltaica','21','10,5%','10,0','↑↑ Acelerada'],
+        ['2','Hidroeléctrica','16','8,0%','7,5','↔ Estable / El Niño'],
+        ['3','Almacenamiento (BESS)','13','6,5%','6,0','↑↑ Despegue'],
+        ['4','Eólica','11','5,5%','5,0','↑ Sólido'],
+        ['4','Gas / CCGT','11','5,5%','5,0','↔ Respaldo firme'],
+        ['6','Generación Distribuida','8','4,0%','3,5','↑ Creciente'],
+        ['7','Redes Inteligentes','6','3,0%','2,5','↑ Digitalización'],
+        ['8','Biomasa','5','2,5%','2,0','↔ Nicho estratégico'],
+        ['9','Nuclear','3','1,5%','1,0','↑ Emergente'],
+        ['10','Hidrógeno Verde','1','0,5%','0,0','↑ Piloto'],
+        ['10','Movilidad Eléctrica','1','0,5%','0,0','↑ Incipiente'],
+        ['10','Geotermia','1','0,5%','0,0','↔ Exploración'],
+        ['10','Híbrido','1','0,5%','0,0','↑ Incipiente'],
+        ['','TOTAL TECNOLOGÍAS','98','—','—','—'],
+    ];
+
+    const businessData = {
+        labels: ['Utility Estatal','Mercado a Término','Infra. Transmisión','Minería / Data Centers','Eficiencia Energética','Autoconsumo / GD','BESS Stand-alone','Pérdidas Eléctricas','Gestión de la Oferta'],
+        data:   [106, 9, 4, 4, 3, 2, 2, 2, 1]
+    };
+
+    const driversData = {
+        labels: ['Inversión y Financiamiento','Transición Energética','Demanda Energética','Seguridad Energética','Cobertura Eléctrica','Minería y Recursos','Geopolítica y Crisis','Regulación y Marco Legal','Eficiencia y Acceso','Interconexión Internacional'],
+        data: [10.0, 5.3, 5.0, 4.1, 0.7, 0.7, 0.7, 0.5, 0.3, 0.1]
+    };
+
+    const countrySA = [
+        ['Brasil','93','46,5%','10,0','Mercado eléctrico, transmisión, regulación'],
+        ['Chile','24','12,0%','2,4','Almacenamiento, solar FV, transmisión'],
+        ['Argentina','16','8,0%','1,5','Almacenamiento (BESS), eólica, nuclear'],
+        ['Ecuador','12','6,0%','1,1','Hidroeléctrica, subsidios, estiaje'],
+        ['Colombia','11','5,5%','1,0','Hidroeléctrica, confiabilidad, El Niño'],
+        ['Perú','10','5,0%','0,9','Electrificación rural, tarifas'],
+        ['Paraguay','10','5,0%','0,9','Itaipú, solar FV, apertura privada'],
+        ['Bolivia','4','2,0%','0,2','Reforma legal, transmisión'],
+        ['Venezuela','3','1,5%','0,1','Emergencia, descentralización'],
+        ['Uruguay','2','1,0%','0,0','Tarifas, eficiencia energética'],
+        ['Subtotal SA','185','92,5%','—','—'],
+    ];
+
+    const countryCAC = [
+        ['Rep. Dominicana','5','2,5%','0,3','Ciclos combinados, PPA, pérdidas'],
+        ['El Salvador','4','2,0%','0,2','Hidro/estiaje, solar, autoconsumo'],
+        ['Costa Rica','4','2,0%','0,2','Mercado eléctrico, financiamiento'],
+        ['Guatemala','2','1,0%','0,0','Licitación PEG-5, renovables'],
+        ['Subtotal CAC','15','7,5%','—','—'],
+        ['TOTAL REGIÓN','200','100%','—','—'],
+    ];
+
+    const techMentions = [
+        {
+            id:'solar', nombre:'Solar Fotovoltaica', color:'#ea580c', bgColor:'#FFF4E0',
+            genuinas:21, indirectas:0,
+            nota:'La solar fotovoltaica encabeza la matriz del mes, con grandes parques en evaluación ambiental en Chile, la primera gran licitación solar de Paraguay y la consolidación de la energía solar en El Salvador y Guatemala.',
+            items:[
+            {pais:'EL SALVADOR',titulo:'La energía solar incrementa su participación en la matriz energética de El Salvador y representa el 9,09 % de la generación en marzo',fuente:'Flash CIER',url:'https://www.infobae.com'},
+            {pais:'ARGENTINA',titulo:'Inauguraron el parque solar más grande del país: aportará más de 300 MW al sistema eléctrico nacional',fuente:'Flash CIER',url:''},
+            {pais:'ARGENTINA',titulo:'Del viento al sol: Parque Arauco estrenó su primer parque solar y mira la hibridación como nueva etapa de expansión',fuente:'Flash CIER',url:'https://www.energiaestrategica.com'},
+            {pais:'CHILE',titulo:'Comisión de Evaluación Ambiental aprueba modificación de parque fotovoltaico en Ovalle',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'CHILE',titulo:'Reforma a la distribución eléctrica protagoniza jornada inaugural de Proyecta Solar 2026',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'CHILE',titulo:'Planta solar en O’Higgins por US$120 millones ingresa a evaluación ambiental',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'CHILE',titulo:'CVE Chile recibe aprobación ambiental para proyecto fotovoltaico en Región de O’Higgins',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'CHILE',titulo:'Coquimbo: Proyecto fotovoltaico por US$88 millones ingresa al SEIA',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'BRASIL',titulo:'Armazenamento ganha protagonismo no setor elétrico e usinas reversíveis avançam como aposta para segurança do SIN',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Minerais críticos entram no radar regulatório e acendem alerta sobre insegurança jurídica para transição energética',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            ]
+        },
+        {
+            id:'transm', nombre:'Transmisión', color:'#1d4ed8', bgColor:'#EEF2FF',
+            genuinas:17, indirectas:0,
+            nota:'La transmisión se confirma como el cuello de botella de la transición: saturación de red en el Nordeste brasileño, adquisición de activos por Taesa, privatización de Transener en Argentina y planes de inversión en Centroamérica.',
+            items:[
+            {pais:'ARGENTINA',titulo:'El Gobierno lanzará una licitación para incorporar centrales de generación térmica en nodos críticos',fuente:'Flash CIER',url:''},
+            {pais:'CHILE',titulo:'Multinacional Alupar ingresa al SEIA nuevo proyecto de subestaciones y líneas eléctricas',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'CHILE',titulo:'Transelec concreta la compra de Transchile Charrúa Transmisión',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'BOLIVIA',titulo:'ENDE Transmisión refuerza la estabilidad eléctrica en el Beni con mantenimiento en zonas críticas',fuente:'Flash CIER',url:'https://www.ende.bo'},
+            {pais:'BRASIL',titulo:'ISA ENERGIA BRASIL obtém licença ambiental para novas linhas do Projeto Serra Dourada',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Abrate aciona ANEEL para barrar repasse de calote de R$ 916 milhões da ‘Corrida do Ouro’ às transmissoras',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'RBSE entra em nova fase de incerteza após TRF-1 determinar revisão de indenizações das transmissoras',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Aneel recalibra efeito do Reidi e eleva receita regulatória de novos projetos de transmissão',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Taesa adquire cinco ativos de transmissão da Energisa por R$ 2,3 bi',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'EPE propõe R$ 1 bilhão em transmissão para reforçar segurança elétrica da Grande Salvador',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            ]
+        },
+        {
+            id:'hidro', nombre:'Hidroeléctrica', color:'#1d4ed8', bgColor:'#EEF2FF',
+            genuinas:16, indirectas:0,
+            nota:'La hidroelectricidad recupera centralidad por la antesala de El Niño: reservorios holgados en Brasil, recuperación de Mazar y Coca Codo Sinclair en Ecuador y monitoreo de embalses en Colombia.',
+            items:[
+            {pais:'ECUADOR',titulo:'Coca Codo Sinclair retomó la generación de energía tras mejorar condiciones de los sedimentos',fuente:'Flash CIER',url:''},
+            {pais:'ECUADOR',titulo:'Embalse Mazar se recupera: ¿alivia el riesgo de apagones en Ecuador?',fuente:'Flash CIER',url:''},
+            {pais:'COSTA RICA',titulo:'ICE y BID formalizan financiamiento por $200 millones para fortalecer infraestructura eléctrica',fuente:'Flash CIER',url:'https://www.energiaestrategica.com/es/notes/ice-y-bid-formalizan-financiamiento-por-usd-200-millones-para-fortalecer-infraestructura-de-costa-rica'},
+            {pais:'EL SALVADOR',titulo:'La generación hidroeléctrica en El Salvador podría disminuir ante el fenómeno del Niño',fuente:'Flash CIER',url:'https://www.infobae.com'},
+            {pais:'ARGENTINA',titulo:'Delegado argentino respalda concreción de la represa de Corpus',fuente:'Flash CIER',url:'https://www.lanacion.com.py'},
+            {pais:'BRASIL',titulo:'Armor projeta bandeira amarela em junho e oscilação no mercado libre',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Cemig conclui período chuvoso com Três Marias a 102% e destaca papel de reservatórios na mitigação de cheias',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'CCEE moderniza regras do MRE e eleva rastreabilidade na contabilização de hidrelétricas',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'CMSE vê melhora hidrológica no SIN, mas mantém monitoramento reforçado sobre suprimento e térmicas até 2026',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Brasil fecha 2025 com matriz elétrica mais renovável e expansão recorde da capacidade instalada',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            ]
+        },
+        {
+            id:'bess', nombre:'Almacenamiento BESS', color:'#ea580c', bgColor:'#FFF4E0',
+            genuinas:13, indirectas:0,
+            nota:'El almacenamiento pasa de complemento a eje del sistema: récord de ofertas en AlmaSADI (Argentina), BESS de larga duración en Chile y leilão de baterías confirmado en Brasil.',
+            items:[
+            {pais:'REPÚBLICA DOMINICANA',titulo:'Ecoener obtiene 8,4 millones de los fondos Next Generation EU para modernizar cuatro minicentrales hidroeléctricas en Galicia',fuente:'Flash CIER',url:'https://elperiodicodelaenergia.com'},
+            {pais:'ARGENTINA',titulo:'Buenos Aires se mete de lleno en la licitación AlmaSADI y BAESA ya prepara proyectos BESS en nodos clave',fuente:'Flash CIER',url:'https://www.energiaestrategica.com/es/notes/buenos-aires-se-mete-de-lleno-en-la-licitacion-almasadi-y-baesa-ya-prepara-proyectos-bess-en-nodos-clave'},
+            {pais:'CHILE',titulo:'Delegación brasileña visita proyecto de almacenamiento de energía en Atacama',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'CHILE',titulo:'ContourGlobal inaugura en Chile la central híbrida con el sistema BESS de mayor duración en Latinoamérica',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'CHILE',titulo:'Engie Chile avanza en energización simultánea de siete proyectos que suman una inversión de US$1.300 millones',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'CHILE',titulo:'Proyecto BESS Los Loros de Engie marca nuevo hito con cierre de etapa de construcción y visita de autoridades',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'CHILE',titulo:'Compañía española ingresa al SEIA proyecto de almacenamiento de energía por US$55 millones en O’Higgins',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'CHILE',titulo:'Compañía chilena obtiene aprobación ambiental para proyecto de almacenamiento de energía de US$336 millones',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'BRASIL',titulo:'MME confirma leilão de baterias em 2026 e promete publicar portaria em até 20 dias',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Leilão de baterias pode destravar R$ 10 bilhões e reduzir custo da energia em até R$ 3 bilhões por ano',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            ]
+        },
+        {
+            id:'eolica', nombre:'Eólica', color:'#16a34a', bgColor:'#F0FDF4',
+            genuinas:11, indirectas:0,
+            nota:'La eólica mantiene un papel sólido, con la agenda offshore de Rio Grande do Sul, nuevos parques en Chile y Argentina y la articulación del Mercosur en torno a minerales críticos.',
+            items:[
+            {pais:'ARGENTINA',titulo:'Argentina adjudica otros 320 MW renovables en el mercado entre privados con la Patagonia nuevamente en carrera',fuente:'Flash CIER',url:'https://www.energiaestrategica.com/es/notes/argentina-adjudica-otros-320-mw-renovables-en-el-mercado-entre-privados-con-la-patagonia-nuevamente-en-carrera'},
+            {pais:'ARGENTINA',titulo:'Sin "impuesto al viento", el Gobierno busca blindar las inversiones en energías renovables',fuente:'Flash CIER',url:''},
+            {pais:'CHILE',titulo:'Mainstream inicia operación comercial de Parque Eólico Ckhúri en Calama',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'CHILE',titulo:'Seremi de Energía destaca operación del parque eólico Los Cururos en Ovalle',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            {pais:'BRASIL',titulo:'Saturação de rede no Nordeste ameaça eficiência de sinais locacionais para baterías',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Mercosul articula plano regional de minerais críticos para blindar transição energética',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Câmara aprova marco dos minerais críticos e coloca Brasil na corrida global da transição energética',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'COLOMBIA',titulo:'Tras subasta de asignación se sumarán 4.069 MW al Sistema en diciembre de 2029',fuente:'Flash CIER',url:'https://www.larepublica.co'},
+            ]
+        },
+        {
+            id:'distrib', nombre:'Distribución', color:'#1d4ed8', bgColor:'#EEF2FF',
+            genuinas:11, indirectas:0,
+            nota:'La distribución concentra actividad regulatoria: reajustes tarifarios en Brasil, reducción de pérdidas de Edesur en RD y modernización de redes en la región.',
+            items:[
+            {pais:'BRASIL',titulo:'ANEEL aprova reajuste tarifário da Cemig com efeito médio de 6,50%',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'CCEE acelera modernização do mercado livre e movimenta R$ 25 bilhões em liquidações em 2025',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Aneel propõe reajuste de 6,5% para a Cemig, menor índice entre grandes distribuidoras em 2026',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'ANEEL antecipa R$ 735 mi do UBP e barra tarifaço de 23% no Amazonas',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Mercado Livre de energia avança 3,1% no 1º trimestre e sustenta expansão da carga no país',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Cemig reduz indicadores de interrupção mesmo sob estresse climático extremo em Minas Gerais',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Mercado livre de energia desacelera após ciclo recorde e entra em fase de maturidade operacional',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Copel entrega Subestação Morangueira e amplia capacidade energética em Maringá',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Cemig eleva aporte em manutenção preventiva para R$ 438 milhões e mira resiliência climática em MG',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Light identifica 3,7 mil irregularidades em abril e recupera 4,1 GWh',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            ]
+        },
+        {
+            id:'gen_dist', nombre:'Generación Distribuida', color:'#059669', bgColor:'#ECFDF5',
+            genuinas:8, indirectas:0,
+            nota:'La generación distribuida avanza con la meta chilena de 1 GW bajo Net Billing, el nuevo reglamento de autoconsumo de El Salvador y el debate argentino sobre su expansión.',
+            items:[
+            {pais:'EL SALVADOR',titulo:'El Salvador publica nuevo reglamento para el fomento y supervisión del autoconsumo con energía renovable',fuente:'Flash CIER',url:'https://www.infobae.com'},
+            {pais:'ARGENTINA',titulo:'Argentina deja USD 3000 millones sobre la mesa por no acelerar la generación distribuida',fuente:'Flash CIER',url:'https://www.energiaestrategica.com/es/notes/argentina-deja-usd-3000-millones-sobre-la-mesa-por-no-acelerar-la-generacion-distribuida'},
+            {pais:'BRASIL',titulo:'Energisa acelera expansão, fortalece caixa e amplia diversificação em meio à transformação do setor elétrico',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Confiabilidade Elétrica: Crise no campo paranaense e investimentos da Copel pautam debate no Senado',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            ]
+        },
+        {
+            id:'nuclear', nombre:'Nuclear', color:'#dc2626', bgColor:'#FEF2F2',
+            genuinas:3, indirectas:0,
+            nota:'La agenda nuclear se reactiva con la renovación de la licencia de Atucha II en Argentina y el reposicionamiento estratégico de la tecnología en la región.',
+            items:[
+            {pais:'ARGENTINA',titulo:'La central nuclear Atucha II obtuvo una renovación de licencia para operar por 10 años más',fuente:'Flash CIER',url:''},
+            {pais:'ARGENTINA',titulo:'Atucha II volvió a operar tras finalizar su revisión programada y ya aporta energía al sistema eléctrico',fuente:'Flash CIER',url:''},
+            {pais:'CHILE',titulo:'Lecciones aprendidas del 25F de 2025: Instituciones firman acuerdo para un sistema energético integrado y confiable',fuente:'Flash CIER',url:'https://www.revistaelectricidad.cl'},
+            ]
+        },
+        {
+            id:'gas_ccgt', nombre:'Gas / CCGT', color:'#7c3aed', bgColor:'#F5F3FF',
+            genuinas:11, indirectas:0,
+            nota:'El gas de ciclo combinado se afirma como respaldo firme: cinco nuevos ciclos combinados en RD, biometano en Brasil y respaldo térmico ante El Niño en El Salvador.',
+            items:[
+            {pais:'REPÚBLICA DOMINICANA',titulo:'RD fortalece generación energética con cinco nuevos ciclos combinados',fuente:'Flash CIER',url:''},
+            {pais:'EL SALVADOR',titulo:'Demanda de energía alcanza récord y empuja alza en el precio en el primer trimestre de 2026 en El Salvador',fuente:'Flash CIER',url:'https://www.infobae.com'},
+            {pais:'ARGENTINA',titulo:'Alerta por frío extremo: CAMMESA prevé un pico de demanda eléctrica y recomiendan un uso eficiente de la energía',fuente:'Flash CIER',url:''},
+            {pais:'ARGENTINA',titulo:'Más ajuste sobre subsidios y tarifas: el Gobierno busca restringir los beneficios por Zona Fría',fuente:'Flash CIER',url:''},
+            {pais:'BRASIL',titulo:'Cemig e Gasmig lançam maior chamada de biometano do país com foco no Triângulo Mineiro',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'ANEEL barra termelétrica de 290 MW selecionada no Leilão de Reserva de Capacidade',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'CNPE eleva meta inicial do biometano e inaugura nova fase da descarbonização do gás natural no Brasil',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'ANP impulsiona transição energética com recorde de R$ 8 bilhões em inovação',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'COLOMBIA',titulo:'MinEnergía activó hoja de ruta con 50 acciones para preparar al país ante llega de El Niño',fuente:'Flash CIER',url:'https://www.larepublica.co'},
+            {pais:'PERÚ',titulo:'Actualización de tarifas eléctricas al mes de mayo de 2026',fuente:'Flash CIER',url:'https://www.gob.pe'},
+            ]
+        },
+        {
+            id:'redes_int', nombre:'Redes Inteligentes', color:'#0891b2', bgColor:'#E0F2FE',
+            genuinas:6, indirectas:0,
+            nota:'Las redes inteligentes ganan presencia con subestaciones digitales en Brasil, inversión de Hitachi Energy en modernización y digitalización de la distribución.',
+            items:[
+            {pais:'BRASIL',titulo:'Varejo consolida protagonismo e responde por 75% das migrações para o mercado livre em abril',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'AXIA Energia ativa primeira subestação 100% digital do Nordeste e inicia plano de R$ 2,1 bilhões',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Hitachi Energy investe R$ 50 milhões em Service para atender gargalo de modernização de redes no Brasil',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            {pais:'BRASIL',titulo:'Gestão de energia assume papel estratégico nas empresas e amplia pressão por eficiência financeira',fuente:'Flash CIER',url:'https://www.cenarioenergia.com.br'},
+            ]
+        },
+    ];
+
+    const regionalContent = [
+        {
+            country:"Argentina", region:"south", flag:"🇦🇷",
+            synthesis:"Récord de ofertas en la licitación de baterías AlmaSADI; privatización de Transener; renovación de Atucha II y media sanción a la prórroga de renovables.",
+            news:[
+                {title:'Argentina adjudica otros 320 MW renovables en el mercado entre privados con la Patagonia nuevamente en carrera', source:'Flash CIER', url:'https://www.energiaestrategica.com/es/notes/argentina-adjudica-otros-320-mw-renovables-en-el-mercado-entre-privados-con-la-patagonia-nuevamente-en-carrera'},
+                {title:'Argentina deja USD 3000 millones sobre la mesa por no acelerar la generación distribuida', source:'Flash CIER', url:'https://www.energiaestrategica.com/es/notes/argentina-deja-usd-3000-millones-sobre-la-mesa-por-no-acelerar-la-generacion-distribuida'},
+                {title:'Diputados da media sanción a la prórroga de la ley de renovables en Argentina para extender beneficios fiscales hasta 2045', source:'Flash CIER', url:'https://www.energiaestrategica.com/es/notes/diputados-da-media-sancion-a-la-prorroga-de-la-ley-de-renovables-en-argentina-para-extender-beneficios-fiscales-hasta-2045'},
+            ]
+        },
+        {
+            country:"Brasil", region:"south", flag:"🇧🇷",
+            synthesis:"Tensión regulatoria por el Leilão de Reserva de Capacidade; la transmisión como eje estratégico; reservorios holgados y confirmación del leilão de baterías.",
+            news:[
+                {title:'ISA ENERGIA BRASIL obtém licença ambiental para novas linhas do Projeto Serra Dourada', source:'Flash CIER', url:'https://www.cenarioenergia.com.br'},
+                {title:'Consumo de energia inverte curva de queda e avança 3,8% em abril', source:'Flash CIER', url:'https://www.cenarioenergia.com.br'},
+                {title:'Saturação de rede no Nordeste ameaça eficiência de sinais locacionais para baterías', source:'Flash CIER', url:'https://www.cenarioenergia.com.br'},
+            ]
+        },
+        {
+            country:"Chile", region:"south", flag:"🇨🇱",
+            synthesis:"Ruta Energética 2026-2030 con meta de peak 100% renovable; BESS de larga duración; intensa evaluación ambiental de solar y almacenamiento.",
+            news:[
+                {title:'Chile y Argentina acuerdan avanzar en nueva agenda de integración energética bilateral', source:'Flash CIER', url:'https://www.revistaelectricidad.cl'},
+                {title:'Delegación brasileña visita proyecto de almacenamiento de energía en Atacama', source:'Flash CIER', url:'https://www.revistaelectricidad.cl'},
+                {title:'ContourGlobal inaugura en Chile la central híbrida con el sistema BESS de mayor duración en Latinoamérica', source:'Flash CIER', url:'https://www.revistaelectricidad.cl'},
+            ]
+        },
+        {
+            country:"Colombia", region:"south", flag:"🇨🇴",
+            synthesis:"Hoja de ruta de 50 acciones ante El Niño; subasta de obligaciones de energía firme; luz verde ambiental a Hidroituango.",
+            news:[
+                {title:'“EPM generará 17% de la energía nacional cuando opere en pleno Hidroituango”', source:'Flash CIER', url:'https://www.larepublica.co'},
+                {title:'Superservicios inició vigilancia de servicio eléctrico de Celsia en Valle del Cauca y Tolima', source:'Flash CIER', url:'https://www.larepublica.co'},
+                {title:'Ad portas del fenómeno El Niño, casi la mitad de los embalses están por debajo de 70%', source:'Flash CIER', url:'https://www.larepublica.co'},
+            ]
+        },
+        {
+            country:"Ecuador", region:"south", flag:"🇪🇨",
+            synthesis:"Recuperación de Mazar y retorno de Coca Codo Sinclair; fracaso de concursos de generación de emergencia; subsidios eléctricos focalizados.",
+            news:[
+                {title:'Este es el subsidio para la energía eléctrica en el trimestre de mayo a julio y lo que deben pagar los usuarios', source:'Flash CIER', url:'https://www.prensalibre.com'},
+                {title:'Fracasó proceso para contratar 50 MW en Ecuador en medio de sequía para octubre', source:'Flash CIER', url:'https://www.larepublica.co'},
+            ]
+        },
+        {
+            country:"Perú", region:"south", flag:"🇵🇪",
+            synthesis:"Foco en electrificación rural y cierre de brechas; actualización del plan nacional y reglamentación de servicios complementarios.",
+            news:[
+                {title:'MINEM culminó con éxito Taller sobre Proyecto de Reglamento de Servicios Complementarios y modificación normativa del sector eléctrico', source:'Flash CIER', url:'https://www.gob.pe'},
+                {title:'MINEM culmina 6 importantes proyectos de electrificación rural beneficiando a más de 19 mil peruanos en 2026', source:'Flash CIER', url:'https://www.gob.pe'},
+            ]
+        },
+        {
+            country:"Paraguay", region:"south", flag:"🇵🇾",
+            synthesis:"Reglamentación de la ley que abre el mercado al sector privado; primera gran licitación solar de ANDE; gobernanza de Itaipú.",
+            news:[
+                {title:'Itaipu: Governo escala núcleo executivo da Fazenda e Casa Civil para o Conselho de Administração', source:'Flash CIER', url:'https://www.cenarioenergia.com.br'},
+                {title:'TCU cobra fiscalização de Itaipu e aponta “vácuo de controle” em gastos de US$ 1 bilhão', source:'Flash CIER', url:'https://www.cenarioenergia.com.br'},
+            ]
+        },
+        {
+            country:"Uruguay", region:"south", flag:"🇺🇾",
+            synthesis:"Reducción de tarifas eléctricas y presentación del Plan Nacional de Eficiencia Energética 2025-2035.",
+            news:[
+                {title:'Uruguay redujo sus tarifas eléctricas, pero sigue teniendo las más altas de la región', source:'Flash CIER', url:''},
+            ]
+        },
+        {
+            country:"Bolivia", region:"south", flag:"🇧🇴",
+            synthesis:"Nuevo proyecto de ley de electricidad y paquete de reformas estructurales; primer Balance de Energía Útil.",
+            news:[
+                {title:'Bajo el liderazgo del Presidente Paz Pereira, Bolivia avanza en un nuevo mapa energético con el primer Balance de Energía Útil', source:'Flash CIER', url:'https://www.hidrocarburos.gob.bo'},
+                {title:'ENDE Transmisión refuerza la estabilidad eléctrica en el Beni con mantenimiento en zonas críticas', source:'Flash CIER', url:'https://www.ende.bo'},
+            ]
+        },
+        {
+            country:"Venezuela", region:"south", flag:"🇻🇪",
+            synthesis:"Debate sobre descentralización del sistema eléctrico y apertura a inversión privada ante consumo récord.",
+            news:[
+                {title:'Parlamentarios presentarán proyecto de ley para descentralizar el sistema eléctrico nacional', source:'Flash CIER', url:''},
+            ]
+        },
+        {
+            country:"Rep. Dominicana", region:"central", flag:"🇩🇴",
+            synthesis:"Aprobación de los PPA de la licitación renovable; cinco nuevos ciclos combinados; reducción de pérdidas de Edesur.",
+            news:[
+                {title:'Ecoener obtiene 8,4 millones de los fondos Next Generation EU para modernizar cuatro minicentrales hidroeléctricas en Galicia', source:'Flash CIER', url:'https://elperiodicodelaenergia.com'},
+                {title:'Adelantarán inversiones en energía para meta 2030', source:'Flash CIER', url:''},
+            ]
+        },
+        {
+            country:"El Salvador", region:"central", flag:"🇸🇻",
+            synthesis:"Riesgo hídrico por El Niño y demanda récord; avance de la solar en la matriz y nuevo reglamento de autoconsumo.",
+            news:[
+                {title:'La generación hidroeléctrica en El Salvador podría disminuir ante el fenómeno del Niño', source:'Flash CIER', url:'https://www.infobae.com'},
+                {title:'Demanda de energía alcanza récord y empuja alza en el precio en el primer trimestre de 2026 en El Salvador', source:'Flash CIER', url:'https://www.infobae.com'},
+            ]
+        },
+        {
+            country:"Costa Rica", region:"central", flag:"🇨🇷",
+            synthesis:"Suspensión de venta de energía de Panamá; presión por modernizar el mercado; financiamiento del BID y plan de descarbonización 2026-2030.",
+            news:[
+                {title:'ICE y BID formalizan financiamiento por $200 millones para fortalecer infraestructura eléctrica', source:'Flash CIER', url:'https://www.energiaestrategica.com/es/notes/ice-y-bid-formalizan-financiamiento-por-usd-200-millones-para-fortalecer-infraestructura-de-costa-rica'},
+                {title:'Costa Rica no enfrentará apagones eléctricos por decisión de Panamá de no vender energía al país', source:'Flash CIER', url:'https://www.larepublica.co'},
+                {title:'Cinco cámaras empresariales respaldan proyecto para modernizar mercado eléctrico', source:'Flash CIER', url:'https://www.lanacion.com.py'},
+            ]
+        },
+        {
+            country:"Guatemala", region:"central", flag:"🇬🇹",
+            synthesis:"Adjudicación de PEG-5 con fuerte protagonismo renovable; anuncio de una posible nueva subasta PEG-6.",
+            news:[
+                {title:'Exclusivo FES Guatemala: El ministro Ventura abre las puertas a una nueva licitación tras el éxito de PEG-5', source:'Flash CIER', url:'https://www.energiaestrategica.com/es/notes/exclusivo-fes-guatemala-el-ministro-ventura-abre-las-puertas-a-una-nueva-licitacion-tras-el-exito-de-peg-5'},
+                {title:'Quantum desmenuza la licitación PEG-5 de Guatemala: "El futuro está en las ofertas mixtas"', source:'Flash CIER', url:'https://www.energiaestrategica.com'},
+            ]
+        },
+    ];
+
+        function renderTechTable() {
+        const tbody = document.getElementById('tech-table-body');
+        tbody.innerHTML = techTableData.map((row, i) => {
+            const isTotal = row[0] === '';
+            const bg = isTotal ? 'bg-blue-50 font-bold' : (i % 2 === 0 ? 'bg-white' : 'bg-slate-50');
+            return `<tr class="${bg} hover:bg-blue-50 transition-colors">
+                ${row.map((cell, ci) => `<td class="px-4 py-2 text-xs ${isTotal ? 'font-bold text-slate-800' : 'text-slate-700'} ${ci === 2 || ci === 3 || ci === 4 ? 'text-center' : ''}">${cell}</td>`).join('')}
+            </tr>`;
+        }).join('');
+    }
+
+    function renderCountryTable(data, tableId, headerBg) {
+        const table = document.getElementById(tableId);
+        const headers = ['País','Menciones','% Total','Índice 0–10','Perfil temático'];
+        table.innerHTML = `<thead><tr class="${headerBg} text-white">
+            ${headers.map(h => `<th class="px-3 py-2 text-left text-xs font-semibold">${h}</th>`).join('')}
+        </tr></thead><tbody>
+        ${data.map((row, i) => {
+            const isTotal = row[0].includes('Subtotal') || row[0] === 'TOTAL REGIÓN';
+            const bg = isTotal ? 'bg-slate-100 font-semibold' : (i % 2 === 0 ? 'bg-white' : 'bg-slate-50');
+            return `<tr class="${bg} hover:bg-blue-50 transition-colors">
+                ${row.map((cell, ci) => `<td class="px-3 py-2 text-xs ${isTotal ? 'font-bold' : 'text-slate-700'}">${cell}</td>`).join('')}
+            </tr>`;
+        }).join('')}
+        </tbody>`;
+    }
+
+    function renderTechMentions() {
+        const container = document.getElementById('tech-mentions-container');
+        container.innerHTML = techMentions.map(tec => {
+            const isSA = (pais) => ['BRASIL','CHILE','ARGENTINA','COLOMBIA','PERÚ','PARAGUAY','URUGUAY','BOLIVIA','ECUADOR','BRASIL ↔ indirecta','COLOMBIA ↔ indirecta'].some(p => pais.startsWith(p));
+            const isIndirect = (pais) => pais.includes('indirecta');
+            return `
+            <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="flex items-center justify-between px-5 py-3" style="background:${tec.color}">
+                    <span class="text-white font-bold text-base">${tec.nombre}</span>
+                    <div class="flex gap-2">
+                        <span class="bg-white bg-opacity-25 text-white text-xs font-medium px-3 py-1 rounded-full">✓ Genuinas: ${tec.genuinas}</span>
+                        ${tec.indirectas > 0 ? `<span class="bg-black bg-opacity-20 text-white text-xs font-medium px-3 py-1 rounded-full">⚠ Indirectas: ${tec.indirectas}</span>` : ''}
+                    </div>
+                </div>
+                <div class="px-5 py-2 text-xs text-amber-800 border-b" style="background:${tec.bgColor}">
+                    <strong>Nota:</strong> ${tec.nota}
+                </div>
+                <div class="divide-y divide-slate-100">
+                    ${tec.items.map(item => {
+                        const indirectBg = isIndirect(item.pais) ? 'bg-orange-50' : 'bg-white';
+                        const badgeClass = isSA(item.pais) ? 'badge-sa' : 'badge-cac';
+                        const titleHtml = item.url
+                            ? `<a href="${item.url}" target="_blank" class="font-semibold text-blue-700 hover:underline">${item.titulo}</a>`
+                            : `<span class="text-slate-700">${item.titulo}</span>`;
+                        return `<div class="px-4 py-2 text-xs ${indirectBg} flex items-start gap-2">
+                            <span class="${badgeClass} flex-shrink-0 mt-0.5">${item.pais}</span>
+                            <div>${titleHtml}${item.fuente ? ` <span class="text-slate-400 italic">[${item.fuente}]</span>` : ''}</div>
+                        </div>`;
+                    }).join('')}
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    // ============================================================
+    // GRÁFICOS Chart.js
+    // ============================================================
+    function initCharts() {
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#64748b';
+
+        // 1. Tecnologías — barras horizontales
+        new Chart(document.getElementById('techChart'), {
+            type: 'bar',
+            data: {
+                labels: techData.labels,
+                datasets: [{
+                    label: 'Menciones',
+                    data: techData.data,
+                    backgroundColor: ctx => {
+                        const v = ctx.raw;
+                        if (v >= 28) return '#1d4ed8';
+                        if (v >= 20) return '#ea580c';
+                        if (v >= 15) return '#0891b2';
+                        return '#94a3b8';
+                    },
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { beginAtZero: true, grid: { color: '#f1f5f9' } } }
+            }
+        });
+
+        // 2. Modelos de negocio — donut
+        new Chart(document.getElementById('businessChart'), {
+            type: 'doughnut',
+            data: {
+                labels: businessData.labels,
+                datasets: [{
+                    data: businessData.data,
+                    backgroundColor: ['#1e40af','#2563eb','#3b82f6','#60a5fa','#ea580c','#f97316','#94a3b8'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } } }
+            }
+        });
+
+        // 3. Share of Voice por País — barras verticales
+        new Chart(document.getElementById('countryChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Brasil','Chile','Paraguay','Colombia','Ecuador','Perú','Argentina','Rep. Dom.','Costa Rica','Bolivia'],
+                datasets: [{
+                    label: 'Noticias',
+                    data: [73, 20, 18, 15, 14, 13, 12, 5, 5, 5],
+                    backgroundColor: ['#1e40af','#1d4ed8','#2563eb','#3b82f6','#60a5fa','#7c3aed','#8b5cf6','#ea580c','#f97316','#fb923c'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, grid: { color: '#f8fafc' } } }
+            }
+        });
+
+        // 4. Inductores — radar
+        new Chart(document.getElementById('driversChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Inversión','Transición','Seguridad','Demanda','Geopolítica','Minería','Eficiencia','Regulación','Interconex.','Cobertura'],
+                datasets: [{
+                    label: 'Índice Normalizado',
+                    data: driversData.data,
+                    fill: true,
+                    backgroundColor: 'rgba(29, 78, 216, 0.15)',
+                    borderColor: 'rgb(29, 78, 216)',
+                    pointBackgroundColor: 'rgb(29, 78, 216)',
+                    pointBorderColor: '#fff',
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { r: { suggestedMin: 0, suggestedMax: 10, angleLines: { color: '#e2e8f0' }, grid: { color: '#e2e8f0' }, pointLabels: { font: { size: 10 } } } }
+            }
+        });
+    }
+
+    // ============================================================
+    // NAVEGACIÓN Y CARDS
+    // ============================================================
+    function switchTab(tabId) {
+        ['dashboard','regional','strategy'].forEach(id => {
+            document.getElementById(`view-${id}`).classList.add('hidden');
+            document.getElementById(`nav-${id}`).classList.remove('active-tab','text-gray-900');
+            document.getElementById(`nav-${id}`).classList.add('text-gray-500');
+        });
+        document.getElementById(`view-${tabId}`).classList.remove('hidden');
+        document.getElementById(`nav-${tabId}`).classList.add('active-tab','text-gray-900');
+        document.getElementById(`nav-${tabId}`).classList.remove('text-gray-500');
+    }
+
+    function renderCountryCards(filter = 'all') {
+        const grid = document.getElementById('country-grid');
+        grid.innerHTML = '';
+        const filtered = filter === 'all' ? regionalContent : regionalContent.filter(c => c.region === filter);
+        filtered.sort((a, b) => a.country.localeCompare(b.country));
+        filtered.forEach(country => {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col card-hover transition-all duration-300 animate-fade-in';
+            card.innerHTML = `
+                <div class="p-5 border-b border-slate-100 bg-slate-50 flex items-center gap-3">
+                    <span class="text-2xl">${country.flag}</span>
+                    <h3 class="font-bold text-slate-800 text-lg">${country.country}</h3>
+                </div>
+                <div class="p-5 flex-grow">
+                    <p class="text-sm text-slate-600 mb-4 italic leading-relaxed">"${country.synthesis}"</p>
+                    <div class="space-y-3">
+                        ${country.news.map(news => `
+                            <div class="flex items-start gap-2">
+                                <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></div>
+                                <div>
+                                    <p class="text-xs font-semibold text-slate-800 leading-snug">${news.title}</p>
+                                    <a href="${news.url}" target="_blank" class="text-[10px] text-blue-600 uppercase tracking-widest mt-1 hover:underline font-bold flex items-center gap-1">
+                                        ${news.source}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-2 w-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>`;
+            grid.appendChild(card);
+        });
+    }
+
+    function filterRegion(region) {
+        document.querySelectorAll('.region-filter').forEach(btn => {
+            btn.classList.remove('bg-white','shadow-sm','text-slate-700');
+            btn.classList.add('text-slate-600');
+        });
+        const activeBtn = document.querySelector(`.region-filter[onclick="filterRegion('${region}')"]`);
+        if (activeBtn) { activeBtn.classList.add('bg-white','shadow-sm','text-slate-700'); activeBtn.classList.remove('text-slate-600'); }
+        renderCountryCards(region);
+    }
+
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', () => {
+        initCharts();
+        renderTechTable();
+        renderCountryTable(countrySA,  'country-sa-table',  'bg-blue-700');
+        renderCountryTable(countryCAC, 'country-cac-table', 'bg-orange-600');
+        renderTechMentions();
+        renderCountryCards();
+    });
+    </script>
+</body>
+</html>
