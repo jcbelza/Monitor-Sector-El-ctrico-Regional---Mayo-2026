@@ -23,7 +23,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 
-    
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; }
         .chart-container { position: relative; width: 100%; height: 350px; max-height: 400px; }
@@ -70,20 +69,19 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-      
-        
+        <!-- Header -->
         <div class="mb-8">
     <p class="text-sm font-semibold text-blue-700 uppercase tracking-wider">Uso Reservado — CIER Internacional</p>
     <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mt-1">Monitor sobre la Situación Actual del Sector Eléctrico</h1>
     
     <p class="mt-2 text-lg text-slate-600">
-        Reporte estratégico basado en <strong>200 noticias</strong> de <strong>14 países</strong>. El panorama eléctrico regional de mayo de 2026 está marcado por el almacenamiento en baterías como eje del sistema —con el récord de ofertas de AlmaSADI en Argentina—, la transmisión convertida en el principal cuello de botella de la transición, una demanda que sorprende al alza por la irrupción de centros de datos, la antesala de un nuevo ciclo de El Niño que reordena las prioridades de los sistemas hidrodependientes y un intenso ciclo de reformas regulatorias y de apertura de mercados, encabezado por Paraguay.
+        Reporte estratégico basado en <strong>400 artículos</strong> de <strong>27 países</strong>. El panorama eléctrico regional de mayo de 2026 está marcado por el almacenamiento en baterías como eje del sistema —con el récord de ofertas de AlmaSADI en Argentina—, la transmisión convertida en el principal cuello de botella de la transición, una demanda que sorprende al alza por la irrupción de centros de datos, la antesala de un nuevo ciclo de El Niño que reordena las prioridades de los sistemas hidrodependientes y un intenso ciclo de reformas regulatorias y de apertura de mercados, encabezado por Paraguay.
     </p>
     
     <div class="mt-3 flex flex-wrap gap-3 text-xs text-slate-500">
         <span class="bg-slate-100 rounded px-3 py-1">📅 Período: Mayo 2026</span>
-        <span class="bg-slate-100 rounded px-3 py-1">📰 200 noticias analizadas</span>
-        <span class="bg-slate-100 rounded px-3 py-1">🌎 14 países cubiertos</span>
+        <span class="bg-slate-100 rounded px-3 py-1">📰 400 artículos analizadas</span>
+        <span class="bg-slate-100 rounded px-3 py-1">🌎 27 países cubiertos</span>
         <span class="bg-slate-100 rounded px-3 py-1">📡 Fuente: Flash CIER</span>
     </div>
 </div>
@@ -135,7 +133,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
                     <h3 class="text-lg font-bold text-slate-800 mb-1">Ranking de Tecnologías — Menciones</h3>
-                    <p class="text-xs text-slate-500 mb-4">Menciones genuinas identificadas en corpus de 200 noticias</p>
+                    <p class="text-xs text-slate-500 mb-4">Menciones genuinas identificadas en corpus de 400 artículos</p>
                     <div class="chart-container">
                         <canvas id="techChart"></canvas>
                     </div>
@@ -170,7 +168,7 @@
             <!-- Cuadro Estadístico de Tecnologías con menciones principales -->
             <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
                 <h3 class="text-lg font-bold text-slate-800 mb-1">Cuadro Estadístico — Tecnologías Identificadas</h3>
-                <p class="text-xs text-slate-500 mb-4">Índice 0–10 normalizado respecto al máximo (Solar Fotovoltaica = 21 menciones = 10,0). Una noticia puede clasificar en más de una tecnología.</p>
+                <p class="text-xs text-slate-500 mb-4">Índice 0–10 normalizado respecto al máximo (Solar Fotovoltaica = 123 artículos = 10,0). Criterio: N° artículos distintos con al menos una mención (Criterio 2). Total corpus: 400 artículos. Un artículo puede clasificar en más de una tecnología.</p>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm">
                         <thead>
@@ -201,7 +199,7 @@
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm" id="country-cac-table"></table>
                     </div>
-                    <p class="text-xs text-slate-400 mt-3">*Las menciones se distribuyen en 14 países; no se registraron noticias clasificables de México, Panamá, Honduras ni Nicaragua en el corpus de mayo.</p>
+                    <p class="text-xs text-slate-400 mt-3">Corpus: 400 artículos (BN América + Flash CIER). 337 artículos con país CSAM/México identificado. 23 artículos sin país asignado (N/A). Otros países: España 14, China 10, EEUU 8, Italia 3, India 2.</p>
                 </section>
             </div>
 
@@ -212,7 +210,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center mb-6">
                 <div>
                     <h2 class="text-2xl font-bold text-slate-900">Pulso Regional de Noticias</h2>
-                    <p class="text-slate-600 mt-1 text-sm">Hitos y noticias clave por país — Mayo 2026 · 14 países cubiertos</p>
+                    <p class="text-slate-600 mt-1 text-sm">Hitos y noticias clave por país — Mayo 2026 · 27 países cubiertos</p>
                 </div>
                 <div class="mt-4 md:mt-0 flex bg-slate-200 p-1 rounded-lg gap-1">
                     <button onclick="filterRegion('all')" class="region-filter px-4 py-2 text-sm font-medium rounded-md text-slate-700 bg-white shadow-sm transition-all">Todos</button>
@@ -448,12 +446,12 @@
     <footer class="bg-slate-900 text-slate-400 py-10 mt-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <p class="font-bold text-slate-200 uppercase tracking-widest">Comisión de Integración Energética Regional (CIER)</p>
-            <p class="text-sm mt-3 font-medium">Monitor Sector Eléctrico LATAM — Mayo 2026 · 200 noticias · 14 países</p>
+            <p class="text-sm mt-3 font-medium">Monitor Sector Eléctrico LATAM — Mayo 2026 · 400 artículos · 27 países</p>
             <div class="flex justify-center gap-6 mt-4 opacity-60 text-xs">
                 <span>Secretaría Ejecutiva · Coordinación Internacional del Área Corporativa</span>
             </div>
             <div class="flex justify-center gap-6 mt-3 opacity-60 text-xs">
-                <span>Fuentes: Flash CIER | Medios de prensa digital</span>
+                <span>Fuentes: Flash CIER | Gobiernos Nacionales | Cenário Energia | Revista Electricidad | La República</span>
             </div>
             <p class="text-[10px] mt-6 opacity-40">© 2026 CIER. Uso interno — Confidencial. Elaborado el 1 de mayo de 2026.</p>
         </div>
@@ -465,58 +463,63 @@
     // ============================================================
 
     const techData = {
-        labels: ['Solar Fotovoltaica','Hidroeléctrica','Almacenamiento (BESS)','Eólica','Gas / CCGT','Generación Distribuida','Redes Inteligentes','Biomasa','Nuclear','Hidrógeno Verde'],
-        data:   [21, 16, 13, 11, 11, 8, 6, 5, 3, 1]
+        labels: ['Solar Fotovoltaica','Almacenamiento (BESS)','Eólica','Hidroeléctrica','Generación Distribuida','Gas / CCGT','Biomasa','Movilidad Eléctrica','Redes Inteligentes','Hidrógeno Verde'],
+        data:   [123, 109, 81, 51, 40, 24, 12, 12, 11, 6]
     };
 
     const techTableData = [
-        ['1','Solar Fotovoltaica','21','10,5%','10,0','↑↑ Acelerada'],
-        ['2','Hidroeléctrica','16','8,0%','7,5','↔ Estable / El Niño'],
-        ['3','Almacenamiento (BESS)','13','6,5%','6,0','↑↑ Despegue'],
-        ['4','Eólica','11','5,5%','5,0','↑ Sólido'],
-        ['4','Gas / CCGT','11','5,5%','5,0','↔ Respaldo firme'],
-        ['6','Generación Distribuida','8','4,0%','3,5','↑ Creciente'],
-        ['7','Redes Inteligentes','6','3,0%','2,5','↑ Digitalización'],
-        ['8','Biomasa','5','2,5%','2,0','↔ Nicho estratégico'],
-        ['9','Nuclear','3','1,5%','1,0','↑ Emergente'],
-        ['10','Hidrógeno Verde','1','0,5%','0,0','↑ Piloto'],
-        ['10','Movilidad Eléctrica','1','0,5%','0,0','↑ Incipiente'],
-        ['10','Geotermia','1','0,5%','0,0','↔ Exploración'],
-        ['10','Híbrido','1','0,5%','0,0','↑ Incipiente'],
-        ['','TOTAL TECNOLOGÍAS','98','—','—','—'],
+        ['1','Solar Fotovoltaica','123','30,8%','10,0','↑↑ Acelerada'],
+        ['2','Almacenamiento (BESS)','109','27,3%','8,9','↑↑ Despegue'],
+        ['3','Eólica','81','20,3%','6,6','↑ Sólido'],
+        ['4','Hidroeléctrica','51','12,8%','4,1','↔ Estable / El Niño'],
+        ['5','Generación Distribuida','40','10,0%','3,3','↑ Creciente'],
+        ['6','Gas / CCGT','24','6,0%','2,0','↔ Respaldo firme'],
+        ['7','Biomasa','12','3,0%','1,0','↔ Nicho estratégico'],
+        ['7','Movilidad Eléctrica','12','3,0%','1,0','↑ Incipiente'],
+        ['9','Redes Inteligentes','11','2,8%','0,9','↑ Digitalización'],
+        ['10','Hidrógeno Verde','6','1,5%','0,5','↑ Piloto'],
+        ['10','Geotermia','6','1,5%','0,5','↔ Exploración'],
+        ['12','Nuclear','4','1,0%','0,3','↑ Emergente'],
+        ['13','Eólica Offshore','2','0,5%','0,2','↑ Incipiente'],
+        ['13','Mini Hidráulica','2','0,5%','0,2','↔ Nicho'],
+        ['15','Híbrido','1','0,3%','0,1','↑ Incipiente'],
+        ['','TOTAL TECNOLOGÍAS','484','—','—','—'],
     ];
 
     const businessData = {
-        labels: ['Utility Estatal','Mercado a Término','Infra. Transmisión','Minería / Data Centers','Eficiencia Energética','Autoconsumo / GD','BESS Stand-alone','Pérdidas Eléctricas','Gestión de la Oferta'],
-        data:   [106, 9, 4, 4, 3, 2, 2, 2, 1]
+        labels: ['Utility Estatal','Mercado a Término','Minería / Data Centers','Autoconsumo / GD','BESS Stand-alone','Eficiencia Energética','Infra. Transmisión','Pérdidas Eléctricas','Gestión de la Oferta'],
+        data:   [381, 62, 25, 21, 12, 12, 7, 3, 3]
     };
 
     const driversData = {
-        labels: ['Inversión y Financiamiento','Transición Energética','Demanda Energética','Seguridad Energética','Cobertura Eléctrica','Minería y Recursos','Geopolítica y Crisis','Regulación y Marco Legal','Eficiencia y Acceso','Interconexión Internacional'],
-        data: [10.0, 5.3, 5.0, 4.1, 0.7, 0.7, 0.7, 0.5, 0.3, 0.1]
+        labels: ['Interconex.', 'Inversión', 'Demanda', 'Transición', 'Seguridad', 'Minería', 'Eficiencia', 'Regulación', 'Geopolítica', 'Cobertura'],
+        data: [10.0, 8.8, 5.5, 5.1, 3.3, 0.7, 0.4, 0.4, 0.3, 0.3]
     };
 
     const countrySA = [
-        ['Brasil','93','46,5%','10,0','Mercado eléctrico, transmisión, regulación'],
-        ['Chile','24','12,0%','2,4','Almacenamiento, solar FV, transmisión'],
-        ['Argentina','16','8,0%','1,5','Almacenamiento (BESS), eólica, nuclear'],
-        ['Ecuador','12','6,0%','1,1','Hidroeléctrica, subsidios, estiaje'],
-        ['Colombia','11','5,5%','1,0','Hidroeléctrica, confiabilidad, El Niño'],
-        ['Perú','10','5,0%','0,9','Electrificación rural, tarifas'],
-        ['Paraguay','10','5,0%','0,9','Itaipú, solar FV, apertura privada'],
-        ['Bolivia','4','2,0%','0,2','Reforma legal, transmisión'],
-        ['Venezuela','3','1,5%','0,1','Emergencia, descentralización'],
-        ['Uruguay','2','1,0%','0,0','Tarifas, eficiencia energética'],
-        ['Subtotal SA','185','92,5%','—','—'],
+        ['Brasil','100','25,0%','10,0','Mercado eléctrico, transmisión, leilões BESS'],
+        ['Argentina','48','12,0%','4,8','Almacenamiento (BESS), eólica, nuclear'],
+        ['Chile','30','7,5%','3,0','Almacenamiento, solar FV, transmisión'],
+        ['Colombia','27','6,8%','2,7','Hidroeléctrica, confiabilidad, El Niño'],
+        ['Perú','15','3,8%','1,5','Electrificación rural, tarifas'],
+        ['Ecuador','12','3,0%','1,2','Hidroeléctrica, subsidios, estiaje'],
+        ['Paraguay','11','2,8%','1,1','Itaipú, solar FV, apertura privada'],
+        ['Uruguay','4','1,0%','0,4','Tarifas, eficiencia energética'],
+        ['Bolivia','4','1,0%','0,4','Reforma legal, transmisión'],
+        ['Venezuela','3','0,8%','0,3','Emergencia, descentralización'],
+        ['Subtotal SA','254','—','—','—']
     ];
 
     const countryCAC = [
-        ['Rep. Dominicana','5','2,5%','0,3','Ciclos combinados, PPA, pérdidas'],
-        ['El Salvador','4','2,0%','0,2','Hidro/estiaje, solar, autoconsumo'],
-        ['Costa Rica','4','2,0%','0,2','Mercado eléctrico, financiamiento'],
-        ['Guatemala','2','1,0%','0,0','Licitación PEG-5, renovables'],
-        ['Subtotal CAC','15','7,5%','—','—'],
-        ['TOTAL REGIÓN','200','100%','—','—'],
+        ['México','31','7,8%','10,0','Energía renovable, regulación, inversión'],
+        ['Rep. Dominicana','22','5,5%','7,1','Ciclos combinados, PPA, pérdidas'],
+        ['Guatemala','11','2,8%','3,5','Licitación PEG-5, solar+BESS'],
+        ['Costa Rica','6','1,5%','1,9','Mercado eléctrico, financiamiento'],
+        ['Panamá','6','1,5%','1,9','Transmisión, regulación'],
+        ['El Salvador','4','1,0%','1,3','Hidro/estiaje, solar, autoconsumo'],
+        ['Honduras','3','0,8%','1,0','Renovables, tarifas'],
+        ['Subtotal CAC','83','—','—','—'],
+        ['TOTAL REGIÓN (con país)','337','—','—','—']
     ];
 
     const techMentions = [
@@ -907,10 +910,10 @@
         new Chart(document.getElementById('countryChart'), {
             type: 'bar',
             data: {
-                labels: ['Brasil','Chile','Paraguay','Colombia','Ecuador','Perú','Argentina','Rep. Dom.','Costa Rica','Bolivia'],
+                labels: ['Brasil','Argentina','Chile','México','Colombia','Rep. Dom.','Perú','España','Ecuador','Guatemala'],
                 datasets: [{
                     label: 'Noticias',
-                    data: [73, 20, 18, 15, 14, 13, 12, 5, 5, 5],
+                    data: [100, 48, 30, 31, 27, 22, 15, 14, 12, 11],
                     backgroundColor: ['#1e40af','#1d4ed8','#2563eb','#3b82f6','#60a5fa','#7c3aed','#8b5cf6','#ea580c','#f97316','#fb923c'],
                     borderRadius: 4
                 }]
@@ -927,7 +930,7 @@
         new Chart(document.getElementById('driversChart'), {
             type: 'radar',
             data: {
-                labels: ['Inversión','Transición','Seguridad','Demanda','Geopolítica','Minería','Eficiencia','Regulación','Interconex.','Cobertura'],
+                labels: ['Interconex.','Inversión','Demanda','Transición','Seguridad','Minería','Eficiencia','Regulación','Geopolítica','Cobertura'],
                 datasets: [{
                     label: 'Índice Normalizado',
                     data: driversData.data,
